@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  
+  
+  <script src="jquery-3.1.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.0.0.js"></script> 
+   <script src="howler.js"></script> !--> 
+ 
+  
+ <script type="text/javascript" src="howler.js"></script> 
+  
+  
+
+  
+ <style>
+ 
+ body {
+ background-color: rgba(255,255, 255, 0.8);
+ 
+ }
+ 
+
+
+
+ .notes{
+
+ 	width:30%;
+ 	height:200px;
+ 	color:white;
+ 	font-size:100px;
+ 	text-align:center;
+ 	padding:3%;
+ 	margin-left:3%;
+ 	float:right;
+ 	box-sizing:border-box;
+
+
+
+
+
+
+ }
+
+ #firstNote{
+
+background-color:red;
+
+ }
+  #secondNote{
+
+background-color:green;
+
+ }
+  #thirdNote{
+
+background-color:blue;
+
+ }
+
+.backward { 
+     display: inline-block;
+    -moz-transform: scale(-1, 1); 
+    -webkit-transform: scale(-1, 1);  
+    transform: scale(-1, 1); 
+}
+
+  </style>
+
+  
+  <title>chordLoops</title>
+</head>
+
+ 
+<body>
+
+
+<div class="notes backward" id="firstNote"></div>
+
+<div class="notes backward" id="secondNote"></div>
+
+<div class="notes backward" id="thirdNote"></div>
+
+
+  
+    
+  
+
+  
+  
+  
+
+
+
+  
+  
+<script>
+
+
+
+
+	var data = {
+
+
+		makeSound: function(){
+	
+	
+	
+	sound.play();
+	
+	
+	},
+
+		showNote: function(){
+
+			if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+},
+
+
+		C3 : {
+
+sound: new Howl({
+    
+    urls: ['c3.mp3']
+    
+	}),
+
+
+
+		}
+
+		}
+
+	
+
+	
+
+
+	
+
+		
+	/*	
+
+	var soundC3 = new Howl({
+    
+    urls: ['c3.mp3']
+    
+	});
+	
+	
+	function C3(){
+	
+	
+	
+	soundC3.play();
+	
+	
+	};
+
+	*/
+	
+	var soundC3sharp = new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	});
+	
+	
+	function C3sharp(){
+	
+	
+	
+	
+	soundC3sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	
+	
+	var soundD3 = new Howl({
+    
+    urls: ['d3.mp3']
+    
+	});
+	
+	
+	function D3(){
+	
+	soundD3.play();
+	
+	
+	};
+	
+	var soundD3sharp = new Howl({
+    
+    urls: ['d3sharp.mp3']
+    
+	});
+	
+	
+	function D3sharp(){
+	
+	soundD3sharp.play();
+	
+	
+	};
+	
+	var soundE3 = new Howl({
+    
+    urls: ['e3.mp3']
+    
+	});
+	
+	
+	function E3(){
+	
+	soundE3.play();
+	
+	
+	};
+	
+	var soundF3 = new Howl({
+    
+    urls: ['f3.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3.play();
+	
+	
+	};
+	
+	var soundF3sharp = new Howl({
+    
+    urls: ['f3sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3sharp.play();
+	
+	
+	};
+	
+	var soundG3 = new Howl({
+    
+    urls: ['g3.mp3']
+    
+	});
+	
+	
+	function G3(){
+	
+	soundG3.play();
+	
+	
+	};
+	
+	var soundG3sharp = new Howl({
+    
+    urls: ['g3sharp.mp3']
+    
+	});
+	
+	
+	function G3sharp(){
+	
+	soundG3sharp.play();
+	
+	
+	};
+	
+	var soundA3 = new Howl({
+    
+    urls: ['a3.mp3']
+    
+	});
+	
+	
+	function A3(){
+	
+	soundA3.play();
+	
+	
+	};
+	
+	var soundA3sharp = new Howl({
+    
+    urls: ['a3sharp.mp3']
+    
+	});
+	
+	
+	function A3sharp(){
+	
+	soundA3sharp.play();
+	
+	
+	};
+	
+	var soundB3 = new Howl({
+    
+    urls: ['B3.mp3']
+    
+	});
+	
+	
+	function B3(){
+	
+	soundB3.play();
+	
+	
+	};
+	
+	
+	
+	
+
+			
+		
+
+		
+
+		
+		
+
+var soundC4 = new Howl({
+    
+    urls: ['C4.mp3']
+    
+	});
+	
+	
+	function C4(){
+	
+	
+	
+	soundC4.play();
+	
+	
+	};
+	
+var soundC4sharp = new Howl({
+    
+    urls: ['c4sharp.mp3']
+    
+	});
+	
+	
+	function C4sharp(){
+	
+	
+	
+	
+	soundC4sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	
+	
+	var soundD4 = new Howl({
+    
+    urls: ['D4.mp3']
+    
+	});
+	
+	
+	function D4(){
+	
+	soundD4.play();
+	
+	
+	};
+	
+	var soundD4sharp = new Howl({
+    
+    urls: ['d4sharp.mp3']
+    
+	});
+	
+	
+	function D4sharp(){
+	
+	soundD4sharp.play();
+	
+	
+	};
+	
+	var soundE4 = new Howl({
+    
+    urls: ['E4.mp3']
+    
+	});
+	
+	
+	function E4(){
+	
+	soundE4.play();
+	
+	
+	};
+	
+	var soundF4 = new Howl({
+    
+    urls: ['F4.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4.play();
+	
+	
+	};
+	
+	var soundF4sharp = new Howl({
+    
+    urls: ['f4sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4sharp.play();
+	
+	
+	};
+	
+	var soundG4 = new Howl({
+    
+    urls: ['G4.mp3']
+    
+	});
+	
+	
+	function G4(){
+	
+	soundG4.play();
+	
+	
+	};
+	
+	var soundG4sharp = new Howl({
+    
+    urls: ['g4sharp.mp3']
+    
+	});
+	
+	
+	function G4sharp(){
+	
+	soundG4sharp.play();
+	
+	
+	};
+	
+	var soundA4 = new Howl({
+    
+    urls: ['A4.mp3']
+    
+	});
+	
+	
+	function A4(){
+	
+	soundA4.play();
+	
+	
+	};
+	
+	var soundA4sharp = new Howl({
+    
+    urls: ['a4sharp.mp3']
+    
+	});
+	
+	
+	function A4sharp(){
+	
+	soundA4sharp.play();
+	
+	
+	};
+	
+	var soundB4 = new Howl({
+    
+    urls: ['B4.mp3']
+    
+	});
+	
+	
+	function B4(){
+	
+	soundB4.play();
+	
+	
+	};
+	
+	var soundC5 = new Howl({
+    
+    urls: ['C5.mp3']
+    
+	});
+	
+	
+	function C5(){
+	
+	soundC5.play();
+	
+	
+	};
+	
+	var soundC5sharp = new Howl({
+    
+    urls: ['c5sharp.mp3']
+    
+	});
+	
+	
+	function C5sharp(){
+	
+	soundC5sharp.play();
+	
+	
+	};
+	
+	var soundD5 = new Howl({
+    
+    urls: ['d5.mp3']
+    
+	});
+	
+	
+	function D5(){
+	
+	soundD5.play();
+	
+	
+	};
+	
+	var soundE5 = new Howl({
+    
+    urls: ['e5.mp3']
+    
+	});
+	
+	
+	function E5(){
+	
+	soundE5.play();
+	
+	
+	};
+	
+	var soundF5 = new Howl({
+    
+    urls: ['f5.mp3']
+    
+	});
+	
+	
+	function F5(){
+	
+	soundF5.play();
+	
+	
+	};
+  
+  	var soundG5 = new Howl({
+    
+    urls: ['g5.mp3']
+    
+	});
+	
+	
+	function G5(){
+	
+	soundG5.play();
+	
+	
+	};
+
+
+
+var key = prompt("type in key");
+
+var key2 = prompt("type in second key");
+
+var chordArrayAll = ["C3","C3#","D3","D3#","E3","F3","F3#","G3","G3#","A3","A3#","B3","C4","C4#","D4","D4#","E4","F4","G4","G4#","A4","A4#","B4"]
+
+var chordArray = [];
+
+var chordArray2 = [];
+
+var indexKey = chordArrayAll.indexOf(key);
+
+var indexKey2 = chordArrayAll.indexOf(key2);
+
+chordArray.push(key,chordArrayAll[indexKey+4],chordArrayAll[indexKey+7]);
+
+chordArray2.push(key2,chordArrayAll[indexKey2+4],chordArrayAll[indexKey2+7]);
+
+var noteDivFirst = document.getElementById("firstNote");
+var noteDivSecond = document.getElementById("secondNote")
+var noteDivThird = document.getElementById("thirdNote")
+
+var counter = 0;
+
+var interval = 620;
+
+var note;
+
+chordCounter = 0;
+
+
+
+
+function playFirstNote(){
+	if(chordArray[counter] === "C3"){
+	data.C3.sound.play();
+	data.showNote();
+}
+
+else if(chordArray[counter]=== "C3#"){
+
+ 	soundC3sharp.play();
+ 	data.showNote();
+ }
+
+
+else if(chordArray[counter]=== "D3"){
+
+ 	soundD3.play();
+
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+
+
+else if(chordArray[counter]=== "D3#"){
+
+ 	soundD3sharp.play();
+
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+ else if(chordArray[counter]=== "E3"){
+
+ 	soundE3.play();
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+
+ 	//alert("e3");
+ } 
+
+
+else if(chordArray[counter]=== "F3"){
+
+ 	soundF3.play();
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+else if(chordArray[counter]=== "F3#"){
+
+ 	soundF3sharp.play();
+
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+
+else if(chordArray[counter]=== "G3") {
+
+soundG3.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+
+
+else if(chordArray[counter]=== "G3#") {
+
+soundG3sharp.play();
+//alert("g3");
+
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+else if(chordArray[counter]=== "A3") {
+
+soundA3.play();
+//alert("g3");
+
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+else if(chordArray[counter]=== "A3#") {
+
+soundA3sharp.play();
+//alert("g3");
+
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+else if(chordArray[counter]=== "B3") {
+
+soundB3.play();
+//alert("g3");
+
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+else if(chordArray[counter]=== "C4") {
+
+soundC4.play();
+//alert("g3");
+
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+
+
+
+}
+
+
+function playSecondNote(){
+		if(chordArray2[counter] === "C3"){
+	data.C3.sound.play();
+	data.showNote();
+}
+
+else if(chordArray2[counter]=== "C3#"){
+
+ 	soundC3sharp.play();
+ 	data.showNote();
+ }
+
+
+else if(chordArray2[counter]=== "D3"){
+
+ 	soundD3.play();
+
+ 	if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+
+
+else if(chordArray2[counter]=== "D3#"){
+
+ 	soundD3sharp.play();
+
+ 	if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+ else if(chordArray2[counter]=== "E3"){
+
+ 	soundE3.play();
+ 	if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+
+ 	//alert("e3");
+ } 
+
+
+else if(chordArray2[counter]=== "F3"){
+
+ 	soundF3.play();
+ 	if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+else if(chordArray2[counter]=== "F3#"){
+
+ 	soundF3sharp.play();
+
+ 	if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+ }
+
+
+else if(chordArray2[counter]=== "G3") {
+
+soundG3.play();
+//alert("g3");
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+
+
+else if(chordArray2[counter]=== "G3#") {
+
+soundG3sharp.play();
+
+
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+else if(chordArray2[counter]=== "A3") {
+
+soundA3.play();
+
+
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+else if(chordArray2[counter]=== "A3#") {
+
+soundA3sharp.play();
+
+
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+else if(chordArray2[counter]=== "B3") {
+
+soundB3.play();
+
+
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+else if(chordArray2[counter]=== "C4") {
+
+soundC4.play();
+//alert("g3");
+
+if(note === chordArray2[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray2[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+
+}
+
+
+
+
+
+
+}
+
+
+
+
+var i = setInterval(function(){
+
+noteDivFirst.textContent = "";
+noteDivSecond.textContent = "";
+noteDivThird.textContent = "";
+    // do your thing
+if(counter > 4){
+
+counter = 0;
+
+}
+
+if(chordCounter > 2){
+
+
+	chordCounter = 0;
+}
+
+
+note = chordArray2[counter];
+
+if(chordCounter > 2){
+
+
+	
+}
+
+//playFirstNote();
+
+playSecondNote()
+
+
+
+counter++
+chordCounter++
+
+
+//alert(chordArray[counter]);
+
+
+setTimeout(function(){
+
+clearInterval(i)},21620)
+
+
+},interval)
+
+
+
+
+</script>
