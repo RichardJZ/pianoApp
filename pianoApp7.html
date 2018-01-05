@@ -106,14 +106,6 @@ background-color:blue;
 	var data = {
 
 
-		makeSound: function(){
-	
-	
-	
-	sound.play();
-	
-	
-	},
 
 		showNote: function(){
 
@@ -129,7 +121,7 @@ showNote2: function(){
 		else{noteDivThird.textContent = note2}
 },
 
-
+sounds: {
 
 		C3 : {
 
@@ -137,11 +129,42 @@ sound: new Howl({
     
     urls: ['c3.mp3']
     
-	}),
+	})
+
+ },
+
+  		C3sharp : {
+
+sound: new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	})
+
+ },
 
 
 
-		}
+		D3 : {
+
+sound: new Howl({
+    
+    urls: ['d3.mp3']
+    
+	})
+
+ }
+
+
+
+}
+
+
+
+	
+
+
+
 
 		}
 
@@ -171,7 +194,7 @@ sound: new Howl({
 	
 	};
 
-	*/
+	
 	
 	var soundC3sharp = new Howl({
     
@@ -192,7 +215,7 @@ sound: new Howl({
 	
 	};
 		
-	
+	/*
 	
 	var soundD3 = new Howl({
     
@@ -207,6 +230,8 @@ sound: new Howl({
 	
 	
 	};
+
+	
 	
 	var soundD3sharp = new Howl({
     
@@ -221,6 +246,8 @@ sound: new Howl({
 	
 	
 	};
+
+	*/
 	
 	var soundE3 = new Howl({
     
@@ -647,31 +674,29 @@ var note;
 
 var note2;
 
-chordCounter = 0;
+var chordCounter = 0;
 
 
 
 
 function playFirstNote(){
 	if(chordArray[counter] === "C3"){
-	data.C3.sound.play();
+	data.sounds.C3.sound.play();
 	data.showNote();
 }
 
 else if(chordArray[counter]=== "C3#"){
 
- 	soundC3sharp.play();
+ 	data.sounds.C3sharp.sound.play();
  	data.showNote();
  }
 
 
 else if(chordArray[counter]=== "D3"){
 
- 	soundD3.play();
+ 	data.sounds.D3.sound.play();
 
- 	if(note === chordArray[0]){noteDivFirst.textContent = note}
-	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
-		else{noteDivThird.textContent = note}
+ 	data.showNote();
 
  }
 
@@ -794,20 +819,20 @@ if(note === chordArray[0]){noteDivFirst.textContent = note}
 
 function playSecondNote(){
 		if(chordArray2[counter] === "C3"){
-	data.C3.sound.play();
+	data.sounds.C3.sound.play();
 	data.showNote2();
 }
 
 else if(chordArray2[counter]=== "C3#"){
 
- 	soundC3sharp.play();
- 	data.showNote();
+ 	data.sounds.C3sharp.sound.play();
+ 	data.sounds.showNote();
  }
 
 
 else if(chordArray2[counter]=== "D3"){
-
- 	soundD3.play();
+	data.sounds.D3.sound.play();
+ 	
 
  	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
 	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
@@ -960,7 +985,7 @@ note2 = chordArray2[counter];
 
 
 
-if(chordCounter > 3 && chordCounter <= 6 ){
+if(chordCounter > 3 && chordCounter <= 6 || chordCounter > 12  ){
 playSecondNote()
 
 	
@@ -969,10 +994,12 @@ playSecondNote()
 else{playFirstNote();}
 
 
-
-
-
 counter++
+
+/* 
+to make counter go up and down use a (nested) extra loop which counts down until 0 after it has reached 5.
+*/
+
 chordCounter = chordCounter + 1/3;
 
 
@@ -981,7 +1008,7 @@ chordCounter = chordCounter + 1/3;
 
 setTimeout(function(){
 
-clearInterval(i)},21620)
+clearInterval(i)},41620)
 
 
 },interval)
