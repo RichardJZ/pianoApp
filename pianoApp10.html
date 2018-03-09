@@ -1,0 +1,1087 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  
+  
+  <script src="jquery-3.1.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.0.0.js"></script> 
+   <script src="howler.js"></script> !--> 
+ 
+  
+ <script type="text/javascript" src="howler.js"></script> 
+  
+ <script src="js/script.js"></script>
+
+  
+ <style>
+ 
+ body {
+ background-color: rgba(255,255, 255, 0.8);
+ 
+ }
+ 
+ .notes{
+ 	width:300px;
+ 	height:200px;
+ 	color:white;
+ 	font-size:100px;
+ 	text-align:center;
+ 	padding:3%;
+ 	margin-left:3%;
+ 	box-sizing:border-box;
+ }
+ #firstNote{
+background-color:red;
+ }
+  #secondNote{
+background-color:green;
+ }
+  #thirdNote{
+background-color:blue;
+ }
+.backward { 
+     display: inline-block;
+    -moz-transform: scale(-1, 1); 
+    -webkit-transform: scale(-1, 1);  
+    transform: scale(-1, 1); 
+}
+
+.container{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+
+}
+
+.wrapper-notes{
+	display:flex;
+	flex-direction: row-reverse;
+
+}
+
+
+.wrapper-keys{
+display:flex;
+flex-direction:row;
+padding:20px;
+background-color: gray;
+margin:30px;
+border-radius:5px;
+
+
+
+}
+
+.keys{
+padding:20px;
+background-color:ivory;
+margin:10px;
+height:50px;
+}
+
+.buttons{
+	margin:30px auto;
+	background-color:#ededed;
+	padding:20px;
+
+
+
+}
+  </style>
+
+  
+  <title>chordLoops</title>
+</head>
+
+ 
+<body>
+
+<div class="container">
+
+	<div class="first--key buttons" onclick="chordKeyOne();">first key</div>
+	<div class="first--key buttons" onclick="generateIndexKey();">generate Index Key</div>
+	<div class="first--key buttons" onclick="createChord1();">Create Chord 1</div>
+	
+
+<div class="wrapper-keys">
+    <div class="keys backward">B3</div>
+    <div class="keys backward">A3#</div>
+    <div class="keys backward">A3</div>
+    <div class="keys backward">G3#</div>
+    <div class="keys backward">G3</div>
+    <div class="keys backward">F3#</div>
+    <div class="keys backward">F3</div>
+    <div class="keys backward">E3</div>
+    <div class="keys backward">D3#</div>
+    <div class="keys backward">D3</div>
+    <div class="keys backward">C3#</div>
+    <div class="keys backward">C3</div>
+</div>
+
+<div class="next--key buttons" onclick="chordKeyTwo();">next key</div>
+<div class="first--key buttons" onclick="generateIndexKey2();">generate Index Key2</div>
+<div class="first--key buttons" onclick="createChord2();">Create Chord 2</div>
+
+<div class="wrapper-notes">
+<div class="notes backward" id="firstNote"></div>
+<div class="notes backward" id="secondNote"></div>
+<div class="notes backward" id="thirdNote"></div>
+</div>
+
+<div class="wrapper-chords">  
+<div class="chord-type buttons" id="major" onclick="major()">major</div> 
+<div class="chord-type buttons" id="minor" onclick="minor()">minor</div>  
+</div>
+
+<div class="button--playchords buttons" onclick="playChords()">Play Chords</div>
+</div>
+  
+  
+  
+
+
+
+  
+  
+<script>
+
+
+
+	var data = {
+		showNote: function(){
+			if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+},
+showNote2: function(){
+			if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+},
+sounds: {
+		C3 : {
+sound: new Howl({
+    
+    urls: ['c3.mp3']
+    
+	})
+ },
+  		C3sharp : {
+sound: new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	})
+ },
+		D3 : {
+sound: new Howl({
+    
+    urls: ['d3.mp3']
+    
+	})
+ },
+
+  		D3sharp : {
+
+ 	sound: new Howl({
+ 		urls: ['d3sharp.mp3']
+
+ 		
+ 			})
+
+
+
+
+}
+}
+	
+		}
+	
+	
+	
+		
+	/*	
+	var soundC3 = new Howl({
+    
+    urls: ['c3.mp3']
+    
+	});
+	
+	
+	function C3(){
+	
+	
+	
+	soundC3.play();
+	
+	
+	};
+	
+	
+	var soundC3sharp = new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	});
+	
+	
+	function C3sharp(){
+	
+	
+	
+	
+	soundC3sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	/*
+	
+	var soundD3 = new Howl({
+    
+    urls: ['d3.mp3']
+    
+	});
+	
+	
+	function D3(){
+	
+	soundD3.play();
+	
+	
+	};
+	
+	
+	var soundD3sharp = new Howl({
+    
+    urls: ['d3sharp.mp3']
+    
+	});
+	
+	
+	function D3sharp(){
+	
+	soundD3sharp.play();
+	
+	
+	};
+	*/
+	
+	var soundE3 = new Howl({
+    
+    urls: ['e3.mp3']
+    
+	});
+	
+	
+	function E3(){
+	
+	soundE3.play();
+	
+	
+	};
+	
+	var soundF3 = new Howl({
+    
+    urls: ['f3.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3.play();
+	
+	
+	};
+	
+	var soundF3sharp = new Howl({
+    
+    urls: ['f3sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3sharp.play();
+	
+	
+	};
+	
+	var soundG3 = new Howl({
+    
+    urls: ['g3.mp3']
+    
+	});
+	
+	
+	function G3(){
+	
+	soundG3.play();
+	
+	
+	};
+	
+	var soundG3sharp = new Howl({
+    
+    urls: ['g3sharp.mp3']
+    
+	});
+	
+	
+	function G3sharp(){
+	
+	soundG3sharp.play();
+	
+	
+	};
+	
+	var soundA3 = new Howl({
+    
+    urls: ['a3.mp3']
+    
+	});
+	
+	
+	function A3(){
+	
+	soundA3.play();
+	
+	
+	};
+	
+	var soundA3sharp = new Howl({
+    
+    urls: ['a3sharp.mp3']
+    
+	});
+	
+	
+	function A3sharp(){
+	
+	soundA3sharp.play();
+	
+	
+	};
+	
+	var soundB3 = new Howl({
+    
+    urls: ['B3.mp3']
+    
+	});
+	
+	
+	function B3(){
+	
+	soundB3.play();
+	
+	
+	};
+	
+	
+	
+	
+			
+		
+		
+		
+		
+var soundC4 = new Howl({
+    
+    urls: ['C4.mp3']
+    
+	});
+	
+	
+	function C4(){
+	
+	
+	
+	soundC4.play();
+	
+	
+	};
+	
+var soundC4sharp = new Howl({
+    
+    urls: ['c4sharp.mp3']
+    
+	});
+	
+	
+	function C4sharp(){
+	
+	
+	
+	
+	soundC4sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	
+	
+	var soundD4 = new Howl({
+    
+    urls: ['D4.mp3']
+    
+	});
+	
+	
+	function D4(){
+	
+	soundD4.play();
+	
+	
+	};
+	
+	var soundD4sharp = new Howl({
+    
+    urls: ['d4sharp.mp3']
+    
+	});
+	
+	
+	function D4sharp(){
+	
+	soundD4sharp.play();
+	
+	
+	};
+	
+	var soundE4 = new Howl({
+    
+    urls: ['E4.mp3']
+    
+	});
+	
+	
+	function E4(){
+	
+	soundE4.play();
+	
+	
+	};
+	
+	var soundF4 = new Howl({
+    
+    urls: ['F4.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4.play();
+	
+	
+	};
+	
+	var soundF4sharp = new Howl({
+    
+    urls: ['f4sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4sharp.play();
+	
+	
+	};
+	
+	var soundG4 = new Howl({
+    
+    urls: ['G4.mp3']
+    
+	});
+	
+	
+	function G4(){
+	
+	soundG4.play();
+	
+	
+	};
+	
+	var soundG4sharp = new Howl({
+    
+    urls: ['g4sharp.mp3']
+    
+	});
+	
+	
+	function G4sharp(){
+	
+	soundG4sharp.play();
+	
+	
+	};
+	
+	var soundA4 = new Howl({
+    
+    urls: ['A4.mp3']
+    
+	});
+	
+	
+	function A4(){
+	
+	soundA4.play();
+	
+	
+	};
+	
+	var soundA4sharp = new Howl({
+    
+    urls: ['a4sharp.mp3']
+    
+	});
+	
+	
+	function A4sharp(){
+	
+	soundA4sharp.play();
+	
+	
+	};
+	
+	var soundB4 = new Howl({
+    
+    urls: ['B4.mp3']
+    
+	});
+	
+	
+	function B4(){
+	
+	soundB4.play();
+	
+	
+	};
+	
+	var soundC5 = new Howl({
+    
+    urls: ['C5.mp3']
+    
+	});
+	
+	
+	function C5(){
+	
+	soundC5.play();
+	
+	
+	};
+	
+	var soundC5sharp = new Howl({
+    
+    urls: ['c5sharp.mp3']
+    
+	});
+	
+	
+	function C5sharp(){
+	
+	soundC5sharp.play();
+	
+	
+	};
+	
+	var soundD5 = new Howl({
+    
+    urls: ['d5.mp3']
+    
+	});
+	
+	
+	function D5(){
+	
+	soundD5.play();
+	
+	
+	};
+	
+	var soundE5 = new Howl({
+    
+    urls: ['e5.mp3']
+    
+	});
+	
+	
+	function E5(){
+	
+	soundE5.play();
+	
+	
+	};
+	
+	var soundF5 = new Howl({
+    
+    urls: ['f5.mp3']
+    
+	});
+	
+	
+	function F5(){
+	
+	soundF5.play();
+	
+	
+	};
+  
+  	var soundG5 = new Howl({
+    
+    urls: ['g5.mp3']
+    
+	});
+	
+	
+	function G5(){
+	
+	soundG5.play();
+	
+	
+	};
+
+/* var key = prompt("type in key");
+var key2 = prompt("type in second key");
+*/
+var firstKey1;
+var secondKey;
+var indexKey; 
+var indexKey2; 
+var chordArrayAll = ["C3","C3#","D3","D3#","E3","F3","F3#","G3","G3#","A3","A3#","B3","C4","C4#","D4","D4#","E4","F4","G4","G4#","A4","A4#","B4"];
+
+
+
+var keyNotes = document.querySelectorAll(".keys");
+
+
+function chordKeyTwo(){
+
+	alert("click on the second key");
+
+keyNotes.forEach(function(key){
+	
+key.addEventListener("click",function(){
+	secondKey = key.innerHTML;
+	alert("good job, that was "+secondKey);
+})	
+})
+}
+
+
+
+
+
+	/*
+$("ul").on("click", "li", function(){
+	
+	
+	
+	$(this).toggleClass("completed");
+});
+*/
+
+
+function chordKeyOne(){
+
+	alert("click on the first key");
+
+keyNotes.forEach(function(key){
+	
+var firstKeyEvent = key.addEventListener("click",function(){
+	firstKey1 = key.innerHTML;
+	
+	
+	
+	alert("good job, that was "+firstKey1);
+
+	
+});
+
+})
+}
+
+function generateIndexKey(){
+	indexKey = chordArrayAll.indexOf(firstKey1);
+	
+}
+
+function generateIndexKey2(){
+	indexKey2 = chordArrayAll.indexOf(secondKey);
+	
+}
+
+/*
+
+*/
+
+/*
+
+$("ul").on("click", "li", function(){
+	$(this).toggleClass("completed");
+});
+
+*/
+
+
+
+
+
+
+
+function major(){
+	secondChordNote = 4;
+	thirdChordNote = 7;
+	alert("major")
+}
+
+
+function minor(){
+	secondChordNote = 3;
+	thirdChordNote = 6;
+	alert("minor")
+}
+
+var interval = 600;
+
+
+var noteDivFirst = document.getElementById("firstNote");
+var noteDivSecond = document.getElementById("secondNote")
+var noteDivThird = document.getElementById("thirdNote")
+
+var chordArray = [];
+var chordArray2 = [];
+var minorChordArray = [];
+var minorChordArray2 = [];
+var secondChordNote;
+var thirdChordNote;
+var chordArrayAll;
+
+var counter;
+var note;
+var note2;
+counter = 0;
+var chordCounter = 0;
+
+
+
+function createChord1(){
+chordArray.push(firstKey1,chordArrayAll[indexKey+secondChordNote],chordArrayAll[indexKey+thirdChordNote]);
+minorChordArray.push(firstKey1,chordArrayAll[indexKey+3],chordArrayAll[indexKey+6]);
+}
+
+
+
+function createChord2(){
+chordArray2.push(secondKey,chordArrayAll[indexKey2+secondChordNote],chordArrayAll[indexKey2+thirdChordNote]);
+minorChordArray2.push(secondKey,chordArrayAll[indexKey2+3],chordArrayAll[indexKey2+6]);
+}
+
+
+
+function playFirstNote(){
+	if(chordArray[counter] === "C3"){
+	data.sounds.C3.sound.play();
+	data.showNote();
+}
+else if(chordArray[counter]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	data.showNote();
+ }
+else if(chordArray[counter]=== "D3"){
+ 	data.sounds.D3.sound.play();
+ 	data.showNote();
+ }
+else if(chordArray[counter]=== "D3#"){
+ 		data.sounds.D3sharp.sound.play();
+ 	data.showNote();
+ }
+ else if(chordArray[counter]=== "E3"){
+ 	soundE3.play();
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ 	//alert("e3");
+ } 
+else if(chordArray[counter]=== "F3"){
+ 	soundF3.play();
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ }
+else if(chordArray[counter]=== "F3#"){
+ 	soundF3sharp.play();
+ 	if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ }
+else if(chordArray[counter]=== "G3") {
+soundG3.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(chordArray[counter]=== "G3#") {
+soundG3sharp.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(chordArray[counter]=== "A3") {
+soundA3.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(chordArray[counter]=== "A3#") {
+soundA3sharp.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(chordArray[counter]=== "B3") {
+soundB3.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(chordArray[counter]=== "C4") {
+soundC4.play();
+//alert("g3");
+if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+}
+function playSecondNote(){
+		if(chordArray2[counter] === "C3"){
+	data.sounds.C3.sound.play();
+	data.showNote2();
+}
+else if(chordArray2[counter]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	data.sounds.showNote();
+ }
+else if(chordArray2[counter]=== "D3"){
+	data.sounds.D3.sound.play();
+ 	
+ 	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+ }
+else if(chordArray2[counter]=== "D3#"){
+ 	soundD3sharp.play();
+ 	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+ }
+ else if(chordArray2[counter]=== "E3"){
+ 	soundE3.play();
+ 	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+ 	//alert("e3");
+ } 
+else if(chordArray2[counter]=== "F3"){
+ 	soundF3.play();
+ 	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+ }
+else if(chordArray2[counter]=== "F3#"){
+ 	soundF3sharp.play();
+ 	if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+ }
+else if(chordArray2[counter]=== "G3") {
+soundG3.play();
+//alert("g3");
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+else if(chordArray2[counter]=== "G3#") {
+soundG3sharp.play();
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+else if(chordArray2[counter]=== "A3") {
+soundA3.play();
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+else if(chordArray2[counter]=== "A3#") {
+soundA3sharp.play();
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+else if(chordArray2[counter]=== "B3") {
+soundB3.play();
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+else if(chordArray2[counter]=== "C4") {
+soundC4.play();
+//alert("g3");
+if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+}
+}
+
+/*
+function playMinorFirstNote(){
+	if(minorChordArray[counter] === "C3"){
+	data.sounds.C3.sound.play();
+	data.showNote();
+}
+else if(minorChordArray[counter]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	data.showNote();
+ }
+else if(minorChordArray[counter]=== "D3"){
+ 	data.sounds.D3.sound.play();
+ 	data.showNote();
+ }
+else if(minorChordArray[counter]=== "D3#"){
+ 		data.sounds.D3sharp.sound.play();
+ 	data.showNote();
+ }
+ else if(minorChordArray[counter]=== "E3"){
+ 	soundE3.play();
+ 	if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ 	//alert("e3");
+ } 
+else if(minorChordArray[counter]=== "F3"){
+ 	soundF3.play();
+ 	if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ }
+else if(minorChordArray[counter]=== "F3#"){
+ 	soundF3sharp.play();
+ 	if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+ }
+else if(minorChordArray[counter]=== "G3") {
+soundG3.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(minorChordArray[counter]=== "G3#") {
+soundG3sharp.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(minorChordArray[counter]=== "A3") {
+soundA3.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(minorChordArray[counter]=== "A3#") {
+soundA3sharp.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(minorChordArray[counter]=== "B3") {
+soundB3.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+else if(minorChordArray[counter]=== "C4") {
+soundC4.play();
+//alert("g3");
+if(note === minorChordArray[0]){noteDivFirst.textContent = note}
+	else if(note === minorChordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+}
+}
+
+*/
+
+function playChords(){
+
+
+
+var i = setInterval(function(){
+noteDivFirst.textContent = "";
+noteDivSecond.textContent = "";
+noteDivThird.textContent = "";
+    // do your thing
+if(counter > 4){
+counter = 0;
+}
+/*if(chordCounter > 2){
+	chordCounter = 0;
+}
+*/
+note = minorChordArray[counter];
+note2 = chordArray2[counter];
+if(chordCounter > 3 && chordCounter <= 6 || chordCounter > 12  ){
+playSecondNote()
+	
+}
+else{playFirstNote();}
+counter++
+/* 
+to make counter go up and down use a (nested) extra loop which counts down until 0 after it has reached 5.
+*/
+chordCounter = chordCounter + 1/3;
+//alert(chordArray[counter]);
+setTimeout(function(){
+clearInterval(i)},41620)
+},interval)	
+
+
+
+
+}
+
+
+</script>
