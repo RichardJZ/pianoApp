@@ -661,7 +661,7 @@ var indexKey2;
 
 var secondScaleNote = 2;
 var thirdScaleNote = 4;
-var fourthScaleNote = 6;
+var fourthScaleNote = 5;
 var fifthScaleNote = 7;
 var sixthScaleNote = 9;
 var seventhScaleNote = 11;
@@ -1006,21 +1006,7 @@ function playScaleImpro(){
 
 counter = Math.floor(Math.random()*8)
 
-alternator++
-
-if (alternator >2){
-
-	alternator = 0;
-}
-
-
-if(alternator === 0){playFirstNote();}
-
-
-
-else{
-playThirdNote();
-}
+playFirstNote();
 
 /* 
 to make counter go up and down use a (nested) extra loop which counts down until 0 after it has reached 5.
