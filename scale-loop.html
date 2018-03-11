@@ -652,8 +652,8 @@ var soundC4sharp = new Howl({
 	
 	};
 
-
-var interval = 610;
+var alternator;
+var interval = 233;
 var firstKey1;
 var secondKey;
 var indexKey; 
@@ -758,6 +758,242 @@ soundB3.play();
 else if(scaleArray[counter]=== "C4") {
 soundC4.play();
 }
+else if(scaleArray[counter]=== "C4#") {
+soundC4sharp.play();
+}
+else if(scaleArray[counter]=== "D4") {
+soundD4.play();
+}
+else if(scaleArray[counter]=== "D4#") {
+soundD4sharp.play();
+}
+else if(scaleArray[counter]=== "E4") {
+soundE4.play();
+}
+else if(scaleArray[counter]=== "F4") {
+soundF4.play();
+}
+
+else if(scaleArray[counter]=== "F4#") {
+soundF4sharp.play();
+}
+else if(scaleArray[counter]=== "F4") {
+soundG4.play();
+}
+
+
+else if(scaleArray[counter]=== "G4#") {
+soundG4.play();
+}
+
+else if(scaleArray[counter]=== "A4") {
+soundA4.play();
+}
+
+
+else if(scaleArray[counter]=== "A4#") {
+soundA4sharp.play();
+}
+
+else if(scaleArray[counter]=== "B5") {
+	soundB5.play();
+	}
+	
+	
+else if(scaleArray[counter]=== "C5") {
+	soundC5.play();
+	}
+
+
+}
+
+
+function playSecondNote(){
+	if(scaleArray[counter+4] === "C3"){
+	data.sounds.C3.sound.play();
+	
+}
+else if(scaleArray[counter+4]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	
+ }
+else if(scaleArray[counter+4]=== "D3"){
+ 	data.sounds.D3.sound.play();
+ 	
+ }
+else if(scaleArray[counter+4]=== "D3#"){
+ 		data.sounds.D3sharp.sound.play();
+ 	
+ }
+ else if(scaleArray[counter+4]=== "E3"){
+ 	soundE3.play();
+ 	
+ } 
+else if(scaleArray[counter+4]=== "F3"){
+ 	soundF3.play();
+ }
+else if(scaleArray[counter+4]=== "F3#"){
+ 	soundF3sharp.play();
+ }
+else if(scaleArray[counter+4]=== "G3") {
+soundG3.play();
+}
+else if(scaleArray[counter+4]=== "G3#") {
+soundG3sharp.play();
+}
+else if(scaleArray[counter+4]=== "A3") {
+soundA3.play();
+}
+else if(scaleArray[counter+4]=== "A3#") {
+soundA3sharp.play();
+}
+else if(scaleArray[counter+4]=== "B3") {
+soundB3.play();
+}
+else if(scaleArray[counter+4]=== "C4") {
+soundC4.play();
+}
+else if(scaleArray[counter+4]=== "C4#") {
+soundC4sharp.play();
+}
+else if(scaleArray[counter+4]=== "D4") {
+soundD4.play();
+}
+else if(scaleArray[counter+4]=== "D4#") {
+soundD4sharp.play();
+}
+else if(scaleArray[counter+4]=== "E4") {
+soundE4.play();
+}
+else if(scaleArray[counter+4]=== "F4") {
+soundF4.play();
+}
+
+else if(scaleArray[counter+4]=== "F4#") {
+soundF4sharp.play();
+}
+else if(scaleArray[counter+4]=== "F4") {
+soundG4.play();
+}
+
+
+else if(scaleArray[counter+4]=== "G4#") {
+soundG4.play();
+}
+
+else if(scaleArray[counter+4]=== "A4") {
+soundA4.play();
+}
+
+
+else if(scaleArray[counter+4]=== "A4#") {
+soundA4sharp.play();
+}
+
+else if(scaleArray[counter+4]=== "B4") {
+	soundB4.play();
+	}
+	
+	
+else if(scaleArray[counter+4]=== "C5") {
+	soundC5.play();
+	}
+
+
+}
+
+function playThirdNote(){
+	if(scaleArray[counter+7] === "C3"){
+	data.sounds.C3.sound.play();
+	
+}
+else if(scaleArray[counter+7]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	
+ }
+else if(scaleArray[counter+7]=== "D3"){
+ 	data.sounds.D3.sound.play();
+ 	
+ }
+else if(scaleArray[counter+7]=== "D3#"){
+ 		data.sounds.D3sharp.sound.play();
+ 	
+ }
+ else if(scaleArray[counter+7]=== "E3"){
+ 	soundE3.play();
+ 	
+ } 
+else if(scaleArray[counter+7]=== "F3"){
+ 	soundF3.play();
+ }
+else if(scaleArray[counter+7]=== "F3#"){
+ 	soundF3sharp.play();
+ }
+else if(scaleArray[counter+7]=== "G3") {
+soundG3.play();
+}
+else if(scaleArray[counter+7]=== "G3#") {
+soundG3sharp.play();
+}
+else if(scaleArray[counter+7]=== "A3") {
+soundA3.play();
+}
+else if(scaleArray[counter+7]=== "A3#") {
+soundA3sharp.play();
+}
+else if(scaleArray[counter+7]=== "B3") {
+soundB3.play();
+}
+else if(scaleArray[counter+7]=== "C4") {
+soundC4.play();
+}
+else if(scaleArray[counter+7]=== "C4#") {
+soundC4sharp.play();
+}
+else if(scaleArray[counter+7]=== "D4") {
+soundD4.play();
+}
+else if(scaleArray[counter+7]=== "D4#") {
+soundD4sharp.play();
+}
+else if(scaleArray[counter+7]=== "E4") {
+soundE4.play();
+}
+else if(scaleArray[counter+7]=== "F4") {
+soundF4.play();
+}
+
+else if(scaleArray[counter+7]=== "F4#") {
+soundF4sharp.play();
+}
+else if(scaleArray[counter+7]=== "F4") {
+soundG4.play();
+}
+
+
+else if(scaleArray[counter+7]=== "G4#") {
+soundG4.play();
+}
+
+else if(scaleArray[counter+7]=== "A4") {
+soundA4.play();
+}
+
+
+else if(scaleArray[counter+7]=== "A4#") {
+soundA4sharp.play();
+}
+
+else if(scaleArray[counter+7]=== "B4") {
+	soundB4.play();
+	}
+	
+	
+else if(scaleArray[counter+7]=== "C5") {
+	soundC5.play();
+	}
+
+
 }
 
 function playScaleImpro(){
@@ -768,12 +1004,23 @@ function playScaleImpro(){
 
 
 
-counter = Math.floor(Math.random()*7)
+counter = Math.floor(Math.random()*8)
+
+alternator++
+
+if (alternator >2){
+
+	alternator = 0;
+}
+
+
+if(alternator === 0){playFirstNote();}
 
 
 
-
-playFirstNote();
+else{
+playThirdNote();
+}
 
 /* 
 to make counter go up and down use a (nested) extra loop which counts down until 0 after it has reached 5.
