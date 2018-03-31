@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="">
+<head>
+
+<style>
+.A432{
+background-color:green;
+width:100px;
+height:50px;
+border-radius:8px;
+
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+<div class="hello">
+
+    hello
+</div>
+
+
+
+
+
+<div>hello</div>
+<input type="range" id="volumebar" min="0" max="1" step="0.1" value="1">
+
+<div class="A432" onclick=soundA432();>
+    A432
+</div>
+
+
+<script>
+
+var volumeBar = document.getElementById('volumebar');
+var volumeLevel = 0;
+volumeBar.addEventListener("change", function(){
+
+	volumeLevel = volumeBar.value;
+
+});
+
+function soundA432(){
+
+
+
+
+var context = new (window.AudioContext || window.webkitAudioContext)();
+
+var oscillator = context.createOscillator();
+
+var gain = context.createGain();
+var now = context.currentTime;
+
+
+
+oscillator.connect(gain);
+
+
+
+gain.gain.setValueAtTime(volumeLevel,now);
+
+gain.connect(context.destination);
+
+
+oscillator.type = 'sine';
+oscillator.frequency.value = 432;
+oscillator.start(now);
+
+oscillator.stop(now +5);
+
+}
+
+</script>
+
+
+
+</body>
+</html>
+
