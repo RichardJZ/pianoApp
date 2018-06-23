@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  
+  
+  <script src="jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.0.0.js"></script> 
+   <script src="howler.js"></script> !--> 
+ 
+  
+ <script type="text/javascript" src="howler.js"></script> 
+
+
+
+
+  
+ <style>
+ 
+ body {
+ background-color: rgba(255,255, 255, 0.8);
+ 
+ }
+ 
+ .notes{
+ 	width:300px;
+ 	height:200px;
+ 	color:white;
+ 	font-size:100px;
+ 	text-align:center;
+ 	padding:3%;
+ 	margin-left:3%;
+ 	box-sizing:border-box;
+ }
+ #firstNote{
+background-color:red;
+ }
+  #secondNote{
+background-color:green;
+ }
+  #thirdNote{
+background-color:blue;
+ }
+.backward { 
+     display: inline-block;
+    -moz-transform: scale(-1, 1); 
+    -webkit-transform: scale(-1, 1);  
+    transform: scale(-1, 1); 
+}
+
+.numbers { 
+     display: inline-block;
+    -moz-transform: scale(1, -1); 
+    -webkit-transform: scale(1, -1);  
+    transform: scale(1, -1); 
+}
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.wrapper-notes{
+	display:flex;
+	flex-direction: row-reverse;
+}
+.wrapper-keys{
+display:flex;
+flex-direction:row;
+padding:20px;
+background-color: gray;
+margin:30px;
+border-radius:5px;
+}
+
+.thirdkeys,
+.keys{
+padding:20px;
+background-color:ivory;
+margin:10px;
+height:50px;
+}
+.buttons{
+	margin:30px auto;
+	background-color:#ededed;
+	padding:20px;
+	font-size: 28px;
+border-radius:8px;
+}
+.inline{
+
+	display:inline-block;
+}
+
+  </style>
+
+  
+  <title>chordLoops</title>
+</head>
+
+ 
+<body>
+
+<div class="container">
+
+	
+	
+
+
+
+<div class="wrapper-keys">
+	<div class="keys backward">C4</div>
+    <div class="keys backward">B3</div>
+    <div class="keys backward">A3#</div>
+    <div class="keys backward">A3</div>
+    <div class="keys backward">G3#</div>
+    <div class="keys backward">G3</div>
+    <div class="keys backward">F3#</div>
+    <div class="keys backward">F3</div>
+    <div class="keys backward">E3</div>
+    <div class="keys backward">D3#</div>
+    <div class="keys backward">D3</div>
+    <div class="keys backward">C3#</div>
+    <div class="keys backward">C3</div>
+</div>
+
+<div class="wrapper-keys">
+	<p class="thirdNote">3rd Note</p>
+	<div class="thirdkeys backward">C4</div>
+    <div class="thirdkeys backward">B3</div>
+    <div class="thirdkeys backward">A3#</div>
+    <div class="thirdkeys backward">A3</div>
+    <div class="thirdkeys backward">G3#</div>
+    <div class="thirdkeys backward">G3</div>
+    <div class="thirdkeys backward">F3#</div>
+    <div class="thirdkeys backward">F3</div>
+    <div class="thirdkeys backward">E3</div>
+    <div class="thirdkeys backward">D3#</div>
+    <div class="thirdkeys backward">D3</div>
+    <div class="thirdkeys backward">C3#</div>
+    <div class="thirdkeys backward">C3</div>
+</div>
+<!--
+<div class="wrapper-notes">
+<div class="notes backward" id="firstNote"></div>
+<div class="notes backward" id="secondNote"></div>
+<div class="notes backward" id="thirdNote"></div>
+</div>  -->
+
+<div class="wrapper-chords">  
+<div class="chord-type buttons backward" id="major" onclick="noteChallenge()">noteChallenge</div> 
+</div>  
+</div>
+
+<div class="result buttons backward">Result</div>
+</div>
+
+<div class="button--playchords buttons  backward" onclick="playScaleImpro()">Play Scale Notes</div>
+</div>
+
+<br>
+<div class="note-show"></div>
+
+<div class="button--playchords buttons  backward" onclick="noteShow()">Show Notes</div>
+</div>
+<div class="button--playchords buttons inline"><span class="score-correct">score</span>/<span class="tries">tries</span>=<span class="average">average</span><span class="average-percent">%</span></div>
+</div>
+<div class="button--playchords buttons  backward" onclick="checkSecondKey()">check Second Key</div>
+</div>
+<div class="button--playchords buttons  backward" onclick="checkThirdKey()">check Third Key</div>
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+
+var data = {
+		showNote: function(){
+			if(note === chordArray[0]){noteDivFirst.textContent = note}
+	else if(note === chordArray[1]){noteDivSecond.textContent = note} 
+		else{noteDivThird.textContent = note}
+},
+showNote2: function(){
+			if(note2 === chordArray2[0]){noteDivFirst.textContent = note2}
+	else if(note2 === chordArray2[1]){noteDivSecond.textContent = note2} 
+		else{noteDivThird.textContent = note2}
+},
+sounds: {
+		C3 : {
+sound: new Howl({
+    
+    urls: ['c3.mp3']
+    
+	}),
+		noteString : "C3"
+
+ },
+  		C3sharp : {
+sound: new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	})
+ },
+		D3 : {
+sound: new Howl({
+    
+    urls: ['d3.mp3']
+    
+	})
+ },
+  		D3sharp : {
+ 	sound: new Howl({
+ 		urls: ['d3sharp.mp3']
+ 		
+ 			})
+}
+}
+	
+		}
+	
+	
+	
+		
+	/*	
+	var soundC3 = new Howl({
+    
+    urls: ['c3.mp3']
+    
+	});
+	
+	
+	function C3(){
+	
+	
+	
+	soundC3.play();
+	
+	
+	};
+	
+	
+	var soundC3sharp = new Howl({
+    
+    urls: ['c3sharp.mp3']
+    
+	});
+	
+	
+	function C3sharp(){
+	
+	
+	
+	
+	soundC3sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	/*
+	
+	var soundD3 = new Howl({
+    
+    urls: ['d3.mp3']
+    
+	});
+	
+	
+	function D3(){
+	
+	soundD3.play();
+	
+	
+	};
+	
+	
+	var soundD3sharp = new Howl({
+    
+    urls: ['d3sharp.mp3']
+    
+	});
+	
+	
+	function D3sharp(){
+	
+	soundD3sharp.play();
+	
+	
+	};
+	*/
+	
+	var soundE3 = new Howl({
+    
+    urls: ['e3.mp3']
+    
+	});
+	
+	
+	function E3(){
+	
+	soundE3.play();
+	
+	
+	};
+	
+	var soundF3 = new Howl({
+    
+    urls: ['f3.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3.play();
+	
+	
+	};
+	
+	var soundF3sharp = new Howl({
+    
+    urls: ['f3sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F3(){
+	
+	soundF3sharp.play();
+	
+	
+	};
+	
+	var soundG3 = new Howl({
+    
+    urls: ['g3.mp3']
+    
+	});
+	
+	
+	function G3(){
+	
+	soundG3.play();
+	
+	
+	};
+	
+	var soundG3sharp = new Howl({
+    
+    urls: ['g3sharp.mp3']
+    
+	});
+	
+	
+	function G3sharp(){
+	
+	soundG3sharp.play();
+	
+	
+	};
+	
+	var soundA3 = new Howl({
+    
+    urls: ['a3.mp3']
+    
+	});
+	
+	
+	function A3(){
+	
+	soundA3.play();
+	
+	
+	};
+	
+	var soundA3sharp = new Howl({
+    
+    urls: ['a3sharp.mp3']
+    
+	});
+	
+	
+	function A3sharp(){
+	
+	soundA3sharp.play();
+	
+	
+	};
+	
+	var soundB3 = new Howl({
+    
+    urls: ['B3.mp3']
+    
+	});
+	
+	
+	function B3(){
+	
+	soundB3.play();
+	
+	
+	};
+	
+	
+	
+	
+			
+		
+		
+		
+		
+var soundC4 = new Howl({
+    
+    urls: ['C4.mp3']
+    
+	});
+	
+	
+	function C4(){
+	
+	
+	
+	soundC4.play();
+	
+	
+	};
+	
+var soundC4sharp = new Howl({
+    
+    urls: ['c4sharp.mp3']
+    
+	});
+	
+	
+	function C4sharp(){
+	
+	
+	
+	
+	soundC4sharp.play();
+	//event.stopImmediatePropagation();
+	
+	
+	
+	};
+		
+	
+	
+	var soundD4 = new Howl({
+    
+    urls: ['D4.mp3']
+    
+	});
+	
+	
+	function D4(){
+	
+	soundD4.play();
+	
+	
+	};
+	
+	var soundD4sharp = new Howl({
+    
+    urls: ['d4sharp.mp3']
+    
+	});
+	
+	
+	function D4sharp(){
+	
+	soundD4sharp.play();
+	
+	
+	};
+	
+	var soundE4 = new Howl({
+    
+    urls: ['E4.mp3']
+    
+	});
+	
+	
+	function E4(){
+	
+	soundE4.play();
+	
+	
+	};
+	
+	var soundF4 = new Howl({
+    
+    urls: ['F4.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4.play();
+	
+	
+	};
+	
+	var soundF4sharp = new Howl({
+    
+    urls: ['f4sharp.mp3']
+    
+	});
+	
+	
+	
+	
+	function F4(){
+	
+	soundF4sharp.play();
+	
+	
+	};
+	
+	var soundG4 = new Howl({
+    
+    urls: ['g4.mp3']
+    
+	});
+	
+	
+	function G4(){
+	
+	soundG4.play();
+	
+	
+	};
+	
+	var soundG4sharp = new Howl({
+    
+    urls: ['g4sharp.mp3']
+    
+	});
+	
+	
+	function G4sharp(){
+	
+	soundG4sharp.play();
+	
+	
+	};
+	
+	var soundA4 = new Howl({
+    
+    urls: ['a4.mp3']
+    
+	});
+	
+	
+	function A4(){
+	
+	soundA4.play();
+	
+	
+	};
+	
+	var soundA4sharp = new Howl({
+    
+    urls: ['a4sharp.mp3']
+    
+	});
+	
+	
+	function A4sharp(){
+	
+	soundA4sharp.play();
+	
+	
+	};
+	
+	var soundB4 = new Howl({
+    
+    urls: ['B4.mp3']
+    
+	});
+	
+	
+	function B4(){
+	
+	soundB4.play();
+	
+	
+	};
+	
+	var soundC5 = new Howl({
+    
+    urls: ['C5.mp3']
+    
+	});
+	
+	
+	function C5(){
+	
+	soundC5.play();
+	
+	
+	};
+	
+	var soundC5sharp = new Howl({
+    
+    urls: ['c5sharp.mp3']
+    
+	});
+	
+	
+	function C5sharp(){
+	
+	soundC5sharp.play();
+	
+	
+	};
+	
+	var soundD5 = new Howl({
+    
+    urls: ['d5.mp3']
+    
+	});
+	
+	
+	function D5(){
+	
+	soundD5.play();
+	
+	
+	};
+	
+	var soundE5 = new Howl({
+    
+    urls: ['e5.mp3']
+    
+	});
+	
+	
+	function E5(){
+	
+	soundE5.play();
+	
+	
+	};
+	
+	var soundF5 = new Howl({
+    
+    urls: ['f5.mp3']
+    
+	});
+	
+	
+	function F5(){
+	
+	soundF5.play();
+	
+	
+	};
+  
+  	var soundG5 = new Howl({
+    
+    urls: ['g5.mp3']
+    
+	});
+	
+	
+	function G5(){
+	
+	soundG5.play();
+	
+	
+	};
+
+var secondKeyGuess = false;
+var firstK = prompt("enter the first note");
+var firstKey = Number(firstK);
+
+var allNotes = ["C3","C3#","D3","D3#","E3","F3","F3#","G3","G3#","A3","A3#","B3","C4","C4#","D4","D4#","E4","F4","F4#","G4","G4#","A4","A4#","B4"];
+var cMinorScale = ["C3","D3","D3#","F3","F3#","G3","G3#","B3","C4"];
+var chosenNotes = [];
+var rnFirstKeyNr;
+var counter = 0;
+var interval = 800;
+var counterCorrect = 0;
+var nShow = document.querySelector(".note-show");
+var scoreCorrect = document.querySelector(".score-correct");
+var tries = 0;
+var triesShow = document.querySelector(".tries")
+var average;
+var averageShow = document.querySelector(".average")
+var resultShow = document.querySelector(".result");
+var rightGuess = "Nice! that was ";
+var wrongGuess = "Listen carefully with your whole body and mind and try again :)"
+
+
+
+function noteShow(){
+	nShow.innerHTML = chosenNotes[1];  
+
+} 
+
+
+function noteChallenge(){
+	chosenNotes = [];
+	var nrInt = 3;/* prompt("What max interval would you want?") */;
+	rnSecondKeyNr = Math.round(Math.random()*nrInt);
+	rnThirdKeyNr = Math.round(Math.random()*nrInt);
+
+	// chosenNotes.push(allNotes[firstKey],allNotes[firstKey + rnSecondKeyNr], allNotes[firstKey + rnThirdKeyNr]);
+
+	chosenNotes.push(cMinorScale[firstKey],cMinorScale[firstKey + rnSecondKeyNr], cMinorScale[firstKey + rnThirdKeyNr]);
+}
+
+
+
+function playNotes(){
+	if(chosenNotes[counter] === "C3"){
+	data.sounds.C3.sound.play();
+	
+}
+else if(chosenNotes[counter]=== "C3#"){
+ 	data.sounds.C3sharp.sound.play();
+ 	
+ }
+else if(chosenNotes[counter]=== "D3"){
+ 	data.sounds.D3.sound.play();
+ 	
+ }
+else if(chosenNotes[counter]=== "D3#"){
+ 		data.sounds.D3sharp.sound.play();
+ 	
+ }
+ else if(chosenNotes[counter]=== "E3"){
+ 	soundE3.play();
+ 	
+ } 
+else if(chosenNotes[counter]=== "F3"){
+ 	soundF3.play();
+ }
+else if(chosenNotes[counter]=== "F3#"){
+ 	soundF3sharp.play();
+ }
+else if(chosenNotes[counter]=== "G3") {
+soundG3.play();
+}
+else if(chosenNotes[counter]=== "G3#") {
+soundG3sharp.play();
+}
+else if(chosenNotes[counter]=== "A3") {
+soundA3.play();
+}
+else if(chosenNotes[counter]=== "A3#") {
+soundA3sharp.play();
+}
+else if(chosenNotes[counter]=== "B3") {
+soundB3.play();
+}
+else if(chosenNotes[counter]=== "C4") {
+soundC4.play();
+}
+else if(chosenNotes[counter]=== "C4#") {
+soundC4sharp.play();
+}
+else if(chosenNotes[counter]=== "D4") {
+soundD4.play();
+}
+else if(chosenNotes[counter]=== "D4#") {
+soundD4sharp.play();
+}
+else if(chosenNotes[counter]=== "E4") {
+soundE4.play();
+}
+else if(chosenNotes[counter]=== "F4") {
+soundF4.play();
+}
+else if(chosenNotes[counter]=== "F4#") {
+soundF4sharp.play();
+}
+else if(chosenNotes[counter]=== "G4") {
+soundG4.play();
+}
+else if(chosenNotes[counter]=== "G4#") {
+soundG4sharp.play();
+}
+else if(chosenNotes[counter]=== "A4") {
+soundA4.play();
+}
+else if(chosenNotes[counter]=== "A4#") {
+soundA4sharp.play();
+}
+else if(chosenNotes[counter]=== "B5") {
+	soundB5.play();
+	}
+	
+	
+else if(chosenNotes[counter]=== "C5") {
+	soundC5.play();
+	}
+}
+
+
+
+function playScaleImpro(){
+    var i = setInterval(function(){
+    // do your thing
+
+playNotes();
+counter++
+
+if(counter > 3){
+	counter = 0;
+}
+
+setTimeout(function(){
+clearInterval(i)},600000)
+},interval)	
+}
+
+
+
+var keyNotes = document.querySelectorAll(".keys");
+var thirdKeyNotes = document.querySelectorAll(".thirdkeys");
+
+function checkSecondKey(){
+
+keyNotes.forEach(function(key){
+	
+var secondNoteEvent = key.addEventListener("click",function(){
+	
+	secondKeyGuess = false;
+    if(key.innerHTML == chosenNotes[1]){
+
+    
+    	secondKeyGuess = true;
+    	
+		checkThirdKey();		
+
+    	
+    }
+    else{resultShow.innerHTML = wrongGuess;}
+
+});
+
+
+})
+}
+
+
+function checkThirdKey(){
+
+thirdKeyNotes.forEach(function(note){
+	
+var thirdNoteEvent = note.addEventListener("click",function(){
+	tries++;
+	
+    if(note.innerHTML == chosenNotes[2] && secondKeyGuess == true){
+
+    	
+    	counterCorrect++;
+    	
+    	average = counterCorrect / tries * 100;
+    	scoreCorrect.innerHTML = counterCorrect;
+    	averageShow.innerHTML = average.toFixed(2);
+    	triesShow.innerHTML = tries;
+    	resultShow.innerHTML = rightGuess+chosenNotes[1]+' and '+chosenNotes[2];
+    	
+		noteChallenge()
+
+    	
+    }
+    else{resultShow.innerHTML = wrongGuess;}
+
+
+
+
+});
+
+
+})
+}
+</script>
