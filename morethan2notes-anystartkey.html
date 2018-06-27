@@ -686,6 +686,7 @@ function noteShow(){
 	nShow.innerHTML = chosenNotes[1];  
 } 
 function noteChallenge(){
+	resetUserNotes();
 	chosenNotes = [];
 	
 
@@ -817,7 +818,7 @@ var userNotes =[];
 var keyNotes = document.querySelectorAll(".keys");
 
 function checkSecondKey(){
-	userNotes.length = 0;	
+	
 
 keyNotes.forEach(function(key){
 	key.addEventListener("click",function(){
